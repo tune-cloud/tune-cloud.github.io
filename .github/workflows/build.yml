@@ -37,6 +37,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -62,6 +67,9 @@ jobs:
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
 
   deploy:
 
