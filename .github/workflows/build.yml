@@ -29,3 +29,36 @@ jobs:
         with:
           branch: main
           folder: build
+
+  scan:
+    runs-on: ubuntu-latest
+    needs: [build]
+    strategy:
+      matrix:
+        language: [javascript]
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: SonarCloud Scan
+        run: |
+          npm ci
+          npm test -- --coverage
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Check Sonar Status
+        run: |
+          status=$(curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=tune-cloud_tune-cloud.github.io)
+          echo $status | jq '.'
+          status=$(echo $status | jq '.projectStatus.status')
+          test '"OK"' = $status
