@@ -1,0 +1,20 @@
+type Query {
+    artists(search: String!): [Artist]
+    songs(artistId: Int!, filter: SongFilter) : [Song]
+}
+
+type Artist {
+    id: String
+    name: String
+}
+
+type Song {
+    id: Int
+    title: String
+    artist: Artist
+}
+
+input SongFilter {
+    songs: [Int]
+    artists: [Int]
+}
