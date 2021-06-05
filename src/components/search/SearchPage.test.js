@@ -57,15 +57,9 @@ test('navigate to artist page using mouse', async ()=>{
             <SearchPage artistService={mockArtistService()} />
         </Router>
     );
-    const searchBar = await screen.getByPlaceholderText('Search for an artist');
 
-    await act(async () => {
-        fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
-        await waitFor(async ()=>{
-            const result = await screen.getByText('name');
-            expect(result).toBeInTheDocument();
-            await fireEvent.click(result);
-        });
+    await searchAndFireEventOnResult((result)=>{
+        fireEvent.click(result);
     });
 
     await waitFor(()=>{
@@ -80,16 +74,9 @@ test('only Enter key navigates to artist page', async ()=>{
             <SearchPage artistService={mockArtistService()} />
         </Router>
     );
-    const searchBar = await screen.getByPlaceholderText('Search for an artist');
-
-    await act(async () => {
-        fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
-        await waitFor(async ()=>{
-            const result = await screen.getByText('name');
-            expect(result).toBeInTheDocument();
-            await fireEvent.keyDown(result, {key: 'a', code: 'a'});
-        });
-    });
+    await searchAndFireEventOnResult((result) => {
+        fireEvent.keyDown(result, {key: 'a', code: 'a'});
+    })
 
     await waitFor(()=>{
         expect(history.location.pathname).toBe('/');
@@ -126,4 +113,17 @@ const mockArtistService= () =>{
     );
 
     return artistService;
+}
+
+const searchAndFireEventOnResult = async (event) => {
+    const searchBar = await screen.getByPlaceholderText('Search for an artist');
+
+    await act(async () => {
+        fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
+        await waitFor(async ()=>{
+            const result = await screen.getByText('name');
+            expect(result).toBeInTheDocument();
+            await event(result);
+        });
+    });
 }
