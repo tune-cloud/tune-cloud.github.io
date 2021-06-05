@@ -1,21 +1,26 @@
 import { Search } from 'react-bootstrap-icons';
-import {useState} from "react";
+import {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
 export default function SearchPage(props) {
 
     const [artists, setArtists] = useState([]);
+    const history = useHistory();
 
     const searchBarKeyPress = (event) => {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' || event.target.value.length >= 4) {
             const search = event.target.value;
             props.artistService.find(search).then((results)=>{
                 setArtists(results.artists);
             }).catch((error)=>{
                 console.log(error);
-            })
+            });
         }
     }
 
+    const goToArtistPage = (artistId) => {
+        history.push(`/artist/${artistId}`);
+    }
 
     return (
         <div className="App">
@@ -34,7 +39,9 @@ export default function SearchPage(props) {
                 <ul className="list-group search-results">
                     {
                         artists.map((artist)=>{
-                            return <li className="list-group-item" tabIndex='0'>{artist.name}</li>
+                            return <li className="list-group-item" tabIndex='0' itemID={artist.id}
+                                       onClick={()=>goToArtistPage(artist.id)}
+                                       onKeyPress={(e) => e.key === 'Enter' ? goToArtistPage(artist.id) : null}>{artist.name}</li>
                         })
                     }
                 </ul>
