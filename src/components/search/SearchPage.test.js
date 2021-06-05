@@ -5,6 +5,11 @@ import {Router} from "react-router-dom";
 import { createMemoryHistory } from 'history';
 
 jest.setTimeout(10000);
+let history;
+
+beforeEach(()=>{
+    history = createMemoryHistory();
+})
 
 test('renders Search Page', () => {
     render(<SearchPage />);
@@ -19,20 +24,8 @@ test('renders search bar', () => {
 });
 
 test('search for artist with mouse click', ()=>{
-    const artistService = new ArtistService();
-    artistService.find = jest.fn(()=>Promise.resolve(
-        {
-            artists: [
-                {
-                    id: 'id',
-                    name: 'name'
-                }
-            ]
-        }
-        )
-    );
 
-    render(<SearchPage artistService={artistService} />);
+    render(<SearchPage artistService={mockArtistService()} />);
     const searchBar = screen.getByPlaceholderText('Search for an artist');
     act(() => {
         fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
@@ -45,20 +38,8 @@ test('search for artist with mouse click', ()=>{
 });
 
 test('auto serch for artist', ()=>{
-    const artistService = new ArtistService();
-    artistService.find = jest.fn(()=>Promise.resolve(
-        {
-            artists: [
-                {
-                    id: 'id',
-                    name: 'name'
-                }
-            ]
-        }
-        )
-    );
 
-    render(<SearchPage artistService={artistService} />);
+    render(<SearchPage artistService={mockArtistService()} />);
     const searchBar = screen.getByPlaceholderText('Search for an artist');
     act(() => {
         fireEvent.change(searchBar, { target: { value: 'name' } })
@@ -71,23 +52,9 @@ test('auto serch for artist', ()=>{
 });
 
 test('navigate to artist page using mouse', async ()=>{
-    const history = createMemoryHistory();
-    const artistService = new ArtistService();
-    artistService.find = jest.fn(()=>Promise.resolve(
-        {
-            artists: [
-                {
-                    id: 'id',
-                    name: 'name'
-                }
-            ]
-        }
-        )
-    );
-
     render(
         <Router history={history}>
-            <SearchPage artistService={artistService} />
+            <SearchPage artistService={mockArtistService()} />
         </Router>
     );
     const searchBar = await screen.getByPlaceholderText('Search for an artist');
@@ -108,23 +75,9 @@ test('navigate to artist page using mouse', async ()=>{
 
 
 test('only Enter key navigates to artist page', async ()=>{
-    const history = createMemoryHistory();
-    const artistService = new ArtistService();
-    artistService.find = jest.fn(()=>Promise.resolve(
-        {
-            artists: [
-                {
-                    id: 'id',
-                    name: 'name'
-                }
-            ]
-        }
-        )
-    );
-
     render(
         <Router history={history}>
-            <SearchPage artistService={artistService} />
+            <SearchPage artistService={mockArtistService()} />
         </Router>
     );
     const searchBar = await screen.getByPlaceholderText('Search for an artist');
@@ -157,3 +110,20 @@ test('error searching for artist', ()=>{
         expect(console.error).toHaveBeenCalled();
     });
 });
+
+const mockArtistService= () =>{
+    const artistService = new ArtistService();
+    artistService.find = jest.fn(()=>Promise.resolve(
+        {
+            artists: [
+                {
+                    id: 'id',
+                    name: 'name'
+                }
+            ]
+        }
+        )
+    );
+
+    return artistService;
+}
