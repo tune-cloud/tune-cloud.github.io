@@ -39,7 +39,7 @@ export default function SearchPage(props) {
                 <ul className="list-group search-results">
                     {
                         artists.map((artist)=>{
-                            return <li className="list-group-item" tabIndex='0' itemID={artist.id}
+                            return <li className="list-group-item" tabIndex='0' key={artist.id}
                                        onClick={()=>goToArtistPage(artist.id)}
                                        onKeyPress={(e) => e.key === 'Enter' ? goToArtistPage(artist.id) : null}>{artist.name}</li>
                         })
