@@ -13,7 +13,7 @@ export default function SearchPage(props) {
             props.artistService.find(search).then((results)=>{
                 setArtists(results.artists);
             }).catch((error)=>{
-                console.log(error);
+                console.error(error);
             });
         }
     }

@@ -18,7 +18,7 @@ test('renders search bar', () => {
     expect(searchBar).toBeInTheDocument();
 });
 
-test('search for artist', ()=>{
+test('search for artist with mouse click', ()=>{
     const artistService = new ArtistService();
     artistService.find = jest.fn(()=>Promise.resolve(
         {
@@ -36,6 +36,32 @@ test('search for artist', ()=>{
     const searchBar = screen.getByPlaceholderText('Search for an artist');
     act(() => {
         fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
+    });
+
+    waitFor(()=>{
+        const result = screen.getByText('name');
+        expect(result).toBeInTheDocument();
+    });
+});
+
+test('auto serch for artist', ()=>{
+    const artistService = new ArtistService();
+    artistService.find = jest.fn(()=>Promise.resolve(
+        {
+            artists: [
+                {
+                    id: 'id',
+                    name: 'name'
+                }
+            ]
+        }
+        )
+    );
+
+    render(<SearchPage artistService={artistService} />);
+    const searchBar = screen.getByPlaceholderText('Search for an artist');
+    act(() => {
+        fireEvent.change(searchBar, { target: { value: 'name' } })
     });
 
     waitFor(()=>{
@@ -114,5 +140,20 @@ test('only Enter key navigates to artist page', async ()=>{
 
     await waitFor(()=>{
         expect(history.location.pathname).toBe('/');
+    });
+});
+
+test('error searching for artist', ()=>{
+    const artistService = new ArtistService();
+    artistService.find = jest.fn(()=>Promise.reject('bad'));
+    console.error = jest.fn();
+
+    render(<SearchPage artistService={artistService} />);
+    const searchBar = screen.getByPlaceholderText('Search for an artist');
+    act(() => {
+        fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
+    });
+    waitFor(()=>{
+        expect(console.error).toHaveBeenCalled();
     });
 });
