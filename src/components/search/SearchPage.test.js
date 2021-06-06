@@ -100,15 +100,13 @@ test('error searching for artist', ()=>{
 
 const mockArtistService= () =>{
     const artistService = new ArtistService();
-    artistService.find = jest.fn(()=>Promise.resolve(
-        {
-            artists: [
+    artistService.find = jest.fn(()=>Promise.resolve([
                 {
                     id: 'id',
                     name: 'name'
                 }
             ]
-        }
+
         )
     );
 

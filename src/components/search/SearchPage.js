@@ -11,7 +11,7 @@ export default function SearchPage(props) {
         if (event.key === 'Enter' || event.target.value.length >= 4) {
             const search = event.target.value;
             props.artistService.find(search).then((results)=>{
-                setArtists(results.artists);
+                setArtists(results);
             }).catch((error)=>{
                 console.error(error);
             });
