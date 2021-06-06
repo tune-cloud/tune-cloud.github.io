@@ -19,7 +19,7 @@ export default function SearchPage(props) {
     }
 
     const goToArtistPage = (artistId) => {
-        history.push(`/artist/${artistId}`);
+        history.push(`/artist?artistId=${artistId}`);
     }
 
     return (
