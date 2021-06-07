@@ -64,7 +64,7 @@ test('navigate to artist page using mouse', async ()=>{
 
     await waitFor(()=>{
         expect(history.location.pathname).toBe('/artist');
-        expect(history.location.search).toBe('?artistId=id');
+        expect(history.location.search).toBe('?artistId=id&artist=name');
     });
 });
 

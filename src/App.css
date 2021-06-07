@@ -16,3 +16,8 @@
 .search-results {
   width: 50%;
 }
+
+.artist-header {
+  background-color: #282c34;
+  color: white;
+}

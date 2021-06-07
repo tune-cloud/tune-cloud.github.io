@@ -18,8 +18,8 @@ export default function SearchPage(props) {
         }
     }
 
-    const goToArtistPage = (artistId) => {
-        history.push(`/artist?artistId=${artistId}`);
+    const goToArtistPage = (artist) => {
+        history.push(`/artist?artistId=${artist.id}&artist=${artist.name}`);
     }
 
     return (
@@ -40,8 +40,8 @@ export default function SearchPage(props) {
                     {
                         artists.map((artist)=>{
                             return <li className="list-group-item" tabIndex='0' key={artist.id}
-                                       onClick={()=>goToArtistPage(artist.id)}
-                                       onKeyPress={(e) => e.key === 'Enter' ? goToArtistPage(artist.id) : null}>{artist.name}</li>
+                                       onClick={()=>goToArtistPage(artist)}
+                                       onKeyPress={(e) => e.key === 'Enter' ? goToArtistPage(artist) : null}>{artist.name}</li>
                         })
                     }
                 </ul>
