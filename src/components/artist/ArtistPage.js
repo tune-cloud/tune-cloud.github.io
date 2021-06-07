@@ -18,7 +18,7 @@ export default function ArtistPage(props) {
         }).catch((error) => {
             console.error(error);
         });
-    }, []);
+    }, [props.location.search, props.songService]);
 
     return(
         <div className="App">
