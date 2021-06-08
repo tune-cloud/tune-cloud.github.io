@@ -7,9 +7,9 @@ export default class SongApi {
         this.client = client;
     }
 
-    static getSongs(artistId) {
+    static getSongs(artistId, top) {
         const query = gql`query {
-            songs(artistId: ${artistId}) {
+            songs(artistId: ${artistId}, top: ${top}) {
                 id
                 title
                 artist {

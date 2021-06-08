@@ -10,7 +10,7 @@ export default function ArtistPage(props) {
         const params = new URLSearchParams(props.location.search);
         const artistId = params.get('artistId');
         setArtist(params.get('artist'));
-        props.songService.getSongs(artistId).then((results)=>{
+        props.songService.getSongs(artistId, 100).then((results)=>{
             const words = results.map((song, index) => {
                 return {text: song.title, value: results.length - (index * index)}
             });

@@ -14,9 +14,9 @@ describe('SearchPage', ()=>{
 
     it('can search', ()=>{
        cy.get('input').type('Bad Books');
-       cy.wait(1000);
+       cy.wait(5000);
        cy.get('input').type('{enter}');
-       cy.wait(3000);
+       cy.wait(5000);
        cy.get('li').first().click();
        cy.hash().should('eq', '#/artist?artistId=97829&artist=Bad%20Books');
     });

@@ -19,7 +19,7 @@ test('get songs for artist', ()=>{
     client.query = jest.fn(()=> expectedResults);
     SongApi.init(client);
 
-    const results = SongApi.getSongs('id');
+    const results = SongApi.getSongs('id', 100);
 
     expect(results).toBe(expectedResults);
 });

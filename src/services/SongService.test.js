@@ -16,6 +16,6 @@ test('get songs',  ()=>{
     };
     SongApi.getSongs = jest.fn(()=>expectedSongs);
     const songService = new SongService();
-    const songs = songService.getSongs('id');
+    const songs = songService.getSongs('id', 100);
     expect(songs).resolves.toBe(expectedSongs.data.songs);
 });
