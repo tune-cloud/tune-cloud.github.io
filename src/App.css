@@ -21,3 +21,7 @@
   background-color: #282c34;
   color: white;
 }
+
+.resize {
+  border: solid 1px #ddd;
+}

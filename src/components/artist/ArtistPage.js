@@ -26,9 +26,9 @@ export default function ArtistPage(props) {
 
             <header className="App-header">
                 <h1 className='artist-header'>{artist}</h1>
-                <Resizable style={{border: 'solid 1px #ddd'}} defaultSize={{
-                    width: '80%',
-                    height: 600
+                <Resizable className='resize' defaultSize={{
+                    width: '90%',
+                    height: window.innerHeight * 0.80
                 }}>
                     <ReactWordcloud words={songs} />
                 </Resizable>
