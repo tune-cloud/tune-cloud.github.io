@@ -20,8 +20,10 @@
 .artist-header {
   background-color: #282c34;
   color: white;
+  font-family: 'Oxygen', sans-serif;
 }
 
 .resize {
   border: solid 1px #ddd;
 }
+
