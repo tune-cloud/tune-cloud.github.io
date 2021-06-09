@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import ReactWordcloud from 'react-wordcloud';
+import {Resizable} from "re-resizable";
 
 export default function ArtistPage(props) {
 
@@ -25,7 +26,13 @@ export default function ArtistPage(props) {
 
             <header className="App-header">
                 <h1 className='artist-header'>{artist}</h1>
-                <ReactWordcloud words={songs} />
+                <Resizable style={{border: 'solid 1px #ddd'}} defaultSize={{
+                    width: '80%',
+                    height: 600
+                }}>
+                    <ReactWordcloud words={songs} />
+                </Resizable>
+
 
             </header>
         </div>);
