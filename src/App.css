@@ -23,7 +23,7 @@
   font-family: 'Oxygen', sans-serif;
 }
 
-.resize {
-  border: solid 1px #ddd;
+.resize-boarder {
+  border: dashed 1px #ddd;
 }
 

@@ -6,6 +6,7 @@ export default function ArtistPage(props) {
 
     const [songs, setSongs] = useState([]);
     const [artist, setArtist] = useState();
+    const [resizeClass, setResizeClass] = useState('resize-no-boarder')
 
     useEffect( ()=>{
         const params = new URLSearchParams(props.location.search);
@@ -24,17 +25,14 @@ export default function ArtistPage(props) {
     return(
         <div className="App">
 
-            <header className="App-header">
-
-                <Resizable className='resize' defaultSize={{
-                    width: '95%',
-                    height: window.innerHeight * 0.95
-                }}>
+            <header className="App-header" onClick={()=>{setResizeClass('resize-boarder');}}>
+                <Resizable className={resizeClass} defaultSize={{
+                    width: '98%',
+                    height: window.innerHeight * 0.98
+                }} onResizeStop={()=>{setResizeClass('resize-no-boarder')}}>
                     <h1 className='artist-header'>{artist}</h1>
                     <ReactWordcloud words={songs} />
                 </Resizable>
-
-
             </header>
         </div>);
 };

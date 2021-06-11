@@ -1,6 +1,6 @@
 import SongService from '../../services/SongService';
 import ArtistPage from './ArtistPage';
-import {render, screen, waitFor} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 
 test('renders word cloud with artist songs', ()=>{
    const songService = new SongService();
@@ -46,4 +46,31 @@ test('logs when error', ()=>{
     waitFor(()=>{
         expect(console.error).toHaveBeenCalled();
     });
-})
+});
+
+test('clicking enables resize', ()=>{
+    const songService = new SongService();
+    const location = {
+        'search': '?artistId=id&artist=artist'
+    };
+
+    jest.mock('react-wordcloud');
+    songService.getSongs = jest.fn(()=>{
+        return Promise.resolve([{
+            title: 'song 1'
+        }, {
+            title: 'song 2'
+        }]);
+    });
+
+
+    render(<ArtistPage songService={songService} location={location}/>);
+
+    const wordCloud = screen.getByTestId('word-cloud');
+    expect(wordCloud).toBeInTheDocument();
+
+    fireEvent.click(wordCloud);
+    waitFor(()=>{
+        expect(wordCloud.className).toBe('resize-boarders');
+    });
+});
