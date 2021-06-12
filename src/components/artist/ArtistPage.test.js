@@ -2,13 +2,17 @@ import SongService from '../../services/SongService';
 import ArtistPage from './ArtistPage';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 
-test('renders word cloud with artist songs', ()=>{
-   const songService = new SongService();
-   const location = {
-       'search': '?artistId=id&artist=artist'
-   };
+let songService;
+let location;
+beforeAll(()=>{
+    songService = new SongService();
+    location = {
+        'search': '?artistId=id&artist=artist'
+    };
+    jest.mock('react-wordcloud');
+});
 
-   jest.mock('react-wordcloud');
+test('renders word cloud with artist songs', ()=>{
    songService.getSongs = jest.fn(()=>{
        return Promise.resolve([{
            title: 'song 1'
@@ -33,12 +37,6 @@ test('renders word cloud with artist songs', ()=>{
 });
 
 test('logs when error', ()=>{
-    const songService = new SongService();
-    const location = {
-        'search': '?artistId=id&artist=artist'
-    };
-
-    jest.mock('react-wordcloud');
     songService.getSongs = jest.fn(()=>Promise.reject('bad'));
 
     render(<ArtistPage songService={songService} location={location}/>);
@@ -49,12 +47,6 @@ test('logs when error', ()=>{
 });
 
 test('clicking enables resize', ()=>{
-    const songService = new SongService();
-    const location = {
-        'search': '?artistId=id&artist=artist'
-    };
-
-    jest.mock('react-wordcloud');
     songService.getSongs = jest.fn(()=>{
         return Promise.resolve([{
             title: 'song 1'
