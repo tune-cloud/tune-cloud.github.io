@@ -1,6 +1,6 @@
 import SongService from '../../services/SongService';
 import ArtistPage from './ArtistPage';
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 
 let songService;
 let location;
@@ -43,26 +43,5 @@ test('logs when error', ()=>{
 
     waitFor(()=>{
         expect(console.error).toHaveBeenCalled();
-    });
-});
-
-test('clicking enables resize', ()=>{
-    songService.getSongs = jest.fn(()=>{
-        return Promise.resolve([{
-            title: 'song 1'
-        }, {
-            title: 'song 2'
-        }]);
-    });
-
-
-    render(<ArtistPage songService={songService} location={location}/>);
-
-    const wordCloud = screen.getByTestId('word-cloud');
-    expect(wordCloud).toBeInTheDocument();
-
-    fireEvent.click(wordCloud);
-    waitFor(()=>{
-        expect(wordCloud.className).toBe('resize-boarders');
     });
 });
