@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
 .App-header {
@@ -21,9 +22,16 @@
   background-color: #282c34;
   color: white;
   font-family: 'Oxygen', sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .resize-boarder {
   border: dashed 1px #ddd;
+}
+
+html  {
+  background-color: #282c34;
 }
 

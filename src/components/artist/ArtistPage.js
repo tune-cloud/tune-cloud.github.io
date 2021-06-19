@@ -3,16 +3,35 @@ import ReactWordcloud from 'react-wordcloud';
 
 export default function ArtistPage(props) {
 
+    const MAX_SONG_TITLE_LENGTH = 30;
+    const MIN_FONT_SIZE = 12;
+    const MAX_FONT_SIZE = 100;
+    const NUMBER_OF_SONGS = 100;
     const [songs, setSongs] = useState([]);
     const [artist, setArtist] = useState();
+    const options = {
+        layout: 'spiral',
+        scale: 'linear',
+        rotations: 3,
+        rotationAngles: [0, 90],
+        enableTooltip: false
+    };
+
+    const calculateWordValue = ((word, popularity)=>{
+        if (word.length > MAX_SONG_TITLE_LENGTH) {
+            return MIN_FONT_SIZE;
+        } else {
+            return MAX_FONT_SIZE - popularity;
+        }
+    });
 
     useEffect( ()=>{
         const params = new URLSearchParams(props.location.search);
         const artistId = params.get('artistId');
         setArtist(params.get('artist'));
-        props.songService.getSongs(artistId, 100).then((results)=>{
+        props.songService.getSongs(artistId, NUMBER_OF_SONGS).then((results)=>{
             const words = results.map((song, index) => {
-                return {text: song.title, value: results.length - (index * index)}
+                return {text: song.title, value: calculateWordValue(song.title, index)}
             });
             setSongs(words);
         }).catch((error) => {
@@ -21,10 +40,8 @@ export default function ArtistPage(props) {
     }, [props.location.search, props.songService]);
 
     return(
-        <div className="App" style={{width: '100%', height: window.innerHeight}}>
-            <header className="App-header">
+        <div className='App' style={{width: '100%', height: window.innerHeight}}>
                     <h1 className='artist-header'>{artist}</h1>
-                    <ReactWordcloud words={songs} />
-            </header>
+                    <ReactWordcloud words={songs} options={options}/>
         </div>);
 };
