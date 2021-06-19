@@ -12,7 +12,7 @@ beforeAll(()=>{
     jest.mock('react-wordcloud');
 });
 
-test('renders word cloud with artist songs', ()=>{
+test('renders word cloud with artist songs', async ()=>{
    songService.getSongs = jest.fn(()=>{
        return Promise.resolve([{
            title: 'song 1'
@@ -23,25 +23,16 @@ test('renders word cloud with artist songs', ()=>{
 
 
    render(<ArtistPage songService={songService} location={location}/>);
-
    const wordCloud = screen.getByTestId('word-cloud');
    expect(wordCloud).toBeInTheDocument();
-   waitFor(()=>{
-       const song1 = screen.getByText(/song 1/i);
-       expect(song1).toBeInTheDocument();
-
-       const song2 = screen.getByText(/song 2/i);
-       expect(song2).toBeInTheDocument();
-   });
-
 });
 
-test('logs when error', ()=>{
+test('logs when error', async ()=>{
     songService.getSongs = jest.fn(()=>Promise.reject('bad'));
-
+    const spy = jest.spyOn(console, 'error');
     render(<ArtistPage songService={songService} location={location}/>);
 
-    waitFor(()=>{
-        expect(console.error).toHaveBeenCalled();
+    await waitFor(()=>{
+        expect(spy).toHaveBeenCalled();
     });
 });

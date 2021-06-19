@@ -11,7 +11,7 @@ beforeEach(()=>{
     history = createMemoryHistory();
 })
 
-test('search for artist with mouse click', ()=>{
+test('search for artist with mouse click', async ()=>{
 
     render(<SearchBar artistService={mockArtistService()} />);
     const searchBar = screen.getByPlaceholderText('Search for an artist');
@@ -19,21 +19,7 @@ test('search for artist with mouse click', ()=>{
         fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
     });
 
-    waitFor(()=>{
-        const result = screen.getByText('name');
-        expect(result).toBeInTheDocument();
-    });
-});
-
-test('auto serch for artist', ()=>{
-
-    render(<SearchBar artistService={mockArtistService()} />);
-    const searchBar = screen.getByPlaceholderText('Search for an artist');
-    act(() => {
-        fireEvent.change(searchBar, { target: { value: 'name' } })
-    });
-
-    waitFor(()=>{
+    await waitFor(()=>{
         const result = screen.getByText('name');
         expect(result).toBeInTheDocument();
     });
@@ -72,18 +58,18 @@ test('only Enter key navigates to artist page', async ()=>{
     });
 });
 
-test('error searching for artist', ()=>{
+test('error searching for artist', async ()=>{
     const artistService = new ArtistService();
     artistService.find = jest.fn(()=>Promise.reject('bad'));
-    console.error = jest.fn();
+    const spy = jest.spyOn(console, 'error');
 
     render(<SearchBar artistService={artistService} />);
     const searchBar = screen.getByPlaceholderText('Search for an artist');
     act(() => {
         fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
     });
-    waitFor(()=>{
-        expect(console.error).toHaveBeenCalled();
+    await waitFor(()=>{
+        expect(spy).toHaveBeenCalled();
     });
 });
 
