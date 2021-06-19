@@ -24,13 +24,13 @@ export default function SearchBar(props) {
 
     return (
         <Fragment>
-            <div className="input-group w-50">
+            <div className="input-group">
                     <span className="input-group-text" id="basic-addon1">
                         <Search />
                     </span>
                 <input type="text" className="form-control" placeholder="Search for an artist"
                        aria-label="Input group example" aria-describedby="basic-addon1"
-                       onKeyDown={searchBarKeyPress}
+                       onKeyDown={searchBarKeyPress} autoFocus
                 />
             </div>
 

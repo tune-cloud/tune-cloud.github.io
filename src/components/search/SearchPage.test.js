@@ -1,5 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import SearchPage from './SearchPage';
+import { createMemoryHistory } from 'history';
+import {Router} from "react-router-dom";
 
 test('renders Search Page', () => {
     render(<SearchPage />);
@@ -11,4 +13,16 @@ test('renders search bar', () => {
     render(<SearchPage />);
     const searchBar = screen.getByPlaceholderText('Search for an artist');
     expect(searchBar).toBeInTheDocument();
+});
+
+test('navigates to search page',()=>{
+    const history = createMemoryHistory();
+    render(
+        <Router history={history}>
+            <SearchPage/>
+        </Router>)
+    ;
+    const searchBar = screen.getByPlaceholderText('Search for an artist');
+    searchBar.focus();
+    expect(history.location.pathname).toBe('/search');
 });

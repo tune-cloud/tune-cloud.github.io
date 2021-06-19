@@ -7,6 +7,7 @@ import ArtistService from "./services/ArtistService";
 import ArtistPage from "./components/artist/ArtistPage";
 import SongService from "./services/SongService";
 import SongApi from "./api/SongApi";
+import SearchingPage from "./components/search/SearchingPage";
 
 
 
@@ -25,6 +26,7 @@ function App() {
     return (
         <HashRouter basename='/'>
             <Route exact path='/' component={()=><SearchPage artistService={artistService} />} />
+            <Route path='/search' component={()=><SearchingPage artistService={artistService} />} />
             <Route path='/artist' component={(props)=><ArtistPage songService={songService} {...props} />} />
         </HashRouter>
   );
