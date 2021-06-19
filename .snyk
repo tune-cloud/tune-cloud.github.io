@@ -497,4 +497,8 @@ ignore:
     - react-scripts > webpack-dev-server > ws:
         reason: None given
         expires: '2021-07-02T13:20:46.676Z'
+  SNYK-JS-APOLLOCLIENT-1085706:
+    - '@apollo/client':
+        reason: None given
+        expires: '2021-07-19T12:59:21.183Z'
 patch: {}
