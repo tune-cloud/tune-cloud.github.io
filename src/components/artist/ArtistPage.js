@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import ReactWordcloud from 'react-wordcloud';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 export default function ArtistPage(props) {
 
@@ -9,6 +10,7 @@ export default function ArtistPage(props) {
     const NUMBER_OF_SONGS = 100;
     const [songs, setSongs] = useState([]);
     const [artist, setArtist] = useState();
+    const [loading, setLoading] = useState(true);
     const options = {
         layout: 'spiral',
         scale: 'linear',
@@ -34,6 +36,7 @@ export default function ArtistPage(props) {
                 return {text: song.title, value: calculateWordValue(song.title, index)}
             });
             setSongs(words);
+            setLoading(false);
         }).catch((error) => {
             console.error(error);
         });
@@ -41,7 +44,9 @@ export default function ArtistPage(props) {
 
     return(
         <div className='App' style={{width: '100%', height: window.innerHeight}}>
+
                     <h1 className='artist-header'>{artist}</h1>
+                    <ScaleLoader loading={loading} color='teal'/>
                     <ReactWordcloud words={songs} options={options}/>
         </div>);
 };
