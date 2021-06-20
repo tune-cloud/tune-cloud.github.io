@@ -24,7 +24,7 @@ export default function SearchBar(props) {
 
     return (
         <Fragment>
-            <div className="input-group">
+            <div className={props.searchBarClassName}>
                     <span className="input-group-text" id="basic-addon1">
                         <Search />
                     </span>
@@ -34,7 +34,7 @@ export default function SearchBar(props) {
                 />
             </div>
 
-            <ul className="list-group search-results">
+            <ul className={props.searchResultsClassName}>
                 {
                     artists.map((artist)=>{
                         return <li className="list-group-item" tabIndex='0' key={artist.id}

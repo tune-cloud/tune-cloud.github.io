@@ -10,12 +10,20 @@ test('renders Search Page', () => {
 });
 
 test('renders search bar', () => {
-    render(<SearchPage />);
+    window.innerWidth = 1024;
+    const history = createMemoryHistory();
+    render(
+        <Router history={history}>
+            <SearchPage/>
+        </Router>)
+    ;
     const searchBar = screen.getByPlaceholderText('Search for an artist');
-    expect(searchBar).toBeInTheDocument();
+    searchBar.focus();
+    expect(history.location.pathname).toBe('/');
 });
 
-test('navigates to search page',()=>{
+test('renders mobile search bar', () => {
+   window.innerWidth = 600;
     const history = createMemoryHistory();
     render(
         <Router history={history}>
