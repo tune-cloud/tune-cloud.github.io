@@ -6,7 +6,7 @@ export default function SearchPage(props) {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Tune Cloud</h1>
+                <img src='/logo192.png' alt='Tune Cloud'/>
                 {!isMobile && <SearchBar {...props} searchBarClassName='input-group w-50' searchResultsClassName='list-group w-50'/>}
                 {isMobile && <MobileSearchBar/>}
             </header>
