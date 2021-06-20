@@ -24,15 +24,15 @@ export default function SearchBar(props) {
 
     return (
         <Fragment>
-            <div className={props.searchBarClassName}>
-                    <span className="input-group-text" id="basic-addon1">
-                        <Search />
-                    </span>
-                <input type="text" className="form-control" placeholder="Search for an artist"
+            <form action='.' onSubmit={(e) => e.preventDefault()} className={props.searchBarClassName}>
+                <span className="input-group-text" id="basic-addon1">
+                    <Search />
+                </span>
+                <input type="search" className="form-control" placeholder="Search for an artist"
                        aria-label="Input group example" aria-describedby="basic-addon1"
                        onKeyDown={searchBarKeyPress} autoFocus
                 />
-            </div>
+            </form>
 
             <ul className={props.searchResultsClassName}>
                 {
