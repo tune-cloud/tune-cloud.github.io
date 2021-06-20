@@ -4,8 +4,8 @@ describe('SearchPage', ()=>{
        cy.visit('/');
     });
 
-    it('has title', ()=>{
-       cy.get('h1').should("have.text", 'Tune Cloud');
+    it('has logo', ()=>{
+       cy.get('img').should("have.attr", 'alt',  'Tune Cloud');
     });
 
     it('has search bar', ()=>{
