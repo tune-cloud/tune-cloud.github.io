@@ -47,6 +47,7 @@ jobs:
           npm start &
           sleep 30
           npm run test:e2e
+          npm run test:e2e-mobile
 
   scan:
     runs-on: ubuntu-latest
@@ -124,5 +125,6 @@ jobs:
         run: |
           sleep 300
           npm run test:e2e
+          npm run test:e2e-mobile
         env:
           CYPRESS_BASE_URL: https://tune-cloud.github.io
