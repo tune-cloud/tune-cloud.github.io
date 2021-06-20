@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 export default function MobileSearchBar() {
     const history = useHistory();
     return (
-        <div className="input-group w-50">
+        <div className="input-group w-75">
             <span className="input-group-text" id="basic-addon1">
                 <Search />
             </span>
