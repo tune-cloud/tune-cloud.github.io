@@ -5,7 +5,7 @@ import {Router} from "react-router-dom";
 
 test('renders Search Page', () => {
     render(<SearchPage />);
-    const headerElement = screen.getByText(/Tune Cloud/i);
+    const headerElement = screen.getByAltText(/Tune Cloud/i);
     expect(headerElement).toBeInTheDocument();
 });
 
