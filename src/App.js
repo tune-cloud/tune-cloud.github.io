@@ -1,13 +1,13 @@
 import {HashRouter, Route} from 'react-router-dom';
 import './App.css';
-import SearchPage from "./components/search/SearchPage";
+import HomePage from "./components/home/HomePage";
 import ArtistApi from "./api/ArtistApi";
 import {ApolloClient, HttpLink, InMemoryCache} from "@apollo/client";
 import ArtistService from "./services/ArtistService";
 import ArtistPage from "./components/artist/ArtistPage";
 import SongService from "./services/SongService";
 import SongApi from "./api/SongApi";
-import SearchingPage from "./components/search/SearchingPage";
+import SearchPage from "./components/search/SearchPage";
 
 
 
@@ -25,8 +25,8 @@ function App() {
 
     return (
         <HashRouter basename='/'>
-            <Route exact path='/' component={()=><SearchPage artistService={artistService} />} />
-            <Route path='/search' component={()=><SearchingPage artistService={artistService} />} />
+            <Route exact path='/' component={()=><HomePage artistService={artistService} />} />
+            <Route path='/search' component={()=><SearchPage artistService={artistService} />} />
             <Route path='/artist' component={(props)=><ArtistPage songService={songService} {...props} />} />
         </HashRouter>
   );
