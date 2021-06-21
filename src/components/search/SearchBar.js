@@ -39,7 +39,9 @@ export default function SearchBar(props) {
                     artists.map((artist)=>{
                         return <li className="list-group-item" tabIndex='0' key={artist.id}
                                    onClick={()=>goToArtistPage(artist)}
-                                   onKeyPress={(e) => e.key === 'Enter' ? goToArtistPage(artist) : null}>{artist.name}</li>
+                                   onKeyPress={(e) => e.key === 'Enter' ? goToArtistPage(artist) : null}>
+                            <img src={artist.thumbnail} width={50} height={50}/>{artist.name}
+                        </li>
                     })
                 }
             </ul>

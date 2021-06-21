@@ -56,4 +56,10 @@ body {
   background-color: white
 }
 
+.list-group-item {
+  align-items: normal;
+  justify-content: left;
+  text-align: left;
+}
+
 

@@ -12,6 +12,7 @@ export default class ArtistApi {
             artists(search: "${search}") {
                 id
                 name
+                thumbnail
             }
         }`;
         return this.client.query({query: query});
