@@ -40,7 +40,7 @@ export default function SearchBar(props) {
                         return <li className="list-group-item" tabIndex='0' key={artist.id}
                                    onClick={()=>goToArtistPage(artist)}
                                    onKeyPress={(e) => e.key === 'Enter' ? goToArtistPage(artist) : null}>
-                            <img src={artist.thumbnail} width={50} height={50}/>{artist.name}
+                            <img src={artist.thumbnail} width={50} height={50} alt=''/>{artist.name}
                         </li>
                     })
                 }
