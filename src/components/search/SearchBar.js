@@ -30,6 +30,7 @@ export default function SearchBar(props) {
 
     const goToArtistPage = (artist) => {
         history.push(`/artist?artistId=${artist.id}&artist=${artist.name}`);
+        window.location.reload();
     }
 
     return (
