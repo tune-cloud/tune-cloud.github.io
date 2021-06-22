@@ -18,6 +18,8 @@ export default function ArtistPage(props) {
         rotationAngles: [0, 90],
         enableTooltip: false
     };
+    const [height, setHeight] = useState(window.innerHeight);
+    const [width] = useState('100%');
 
     const calculateWordValue = ((word, popularity)=>{
         if (word.length > MAX_SONG_TITLE_LENGTH) {
@@ -42,8 +44,13 @@ export default function ArtistPage(props) {
         });
     }, [props.location.search, props.songService]);
 
+    useEffect(()=>{
+        window.addEventListener('resize', ()=>{
+            setHeight(window.innerHeight - 10);
+        });
+    }, []);
     return(
-        <div className='App' style={{width: '100%', height: window.innerHeight}}>
+        <div className='App' style={{width: width, height: height}} data-testid='word-cloud-container'>
 
                     <h1 className='artist-header'>{artist}</h1>
                     <ScaleLoader loading={loading} color='teal'/>
