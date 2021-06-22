@@ -54,6 +54,6 @@ test('resize window resizes word cloud', async () => {
 
     const wordCloud = screen.getByTestId('word-cloud-container');
     await waitFor(()=>{
-        expect(wordCloud.style.height).toBe('390px');
+        expect(wordCloud.style.height).toBe('300px');
     });
 });

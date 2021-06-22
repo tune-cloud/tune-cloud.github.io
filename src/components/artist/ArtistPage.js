@@ -8,6 +8,7 @@ export default function ArtistPage(props) {
     const MIN_FONT_SIZE = 12;
     const MAX_FONT_SIZE = 100;
     const NUMBER_OF_SONGS = 100;
+    const HEIGHT_OFFSET = 100;
     const [songs, setSongs] = useState([]);
     const [artist, setArtist] = useState();
     const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ export default function ArtistPage(props) {
         rotationAngles: [0, 90],
         enableTooltip: false
     };
-    const [height, setHeight] = useState(window.innerHeight);
+    const [height, setHeight] = useState(window.innerHeight - HEIGHT_OFFSET);
     const [width] = useState('100%');
 
     const calculateWordValue = ((word, popularity)=>{
@@ -46,7 +47,7 @@ export default function ArtistPage(props) {
 
     useEffect(()=>{
         window.addEventListener('resize', ()=>{
-            setHeight(window.innerHeight - 10);
+            setHeight(window.innerHeight - HEIGHT_OFFSET);
         });
     }, []);
     return(
