@@ -7,8 +7,8 @@ export default function SearchBar(props) {
     const [artists, setArtists] = useState([]);
     const history = useHistory();
 
-    const searchBarKeyPress = (event) => {
-        if (event.key === 'Enter' || event.target.value.length >= 4) {
+    const searchBarKeyPress = async (event) => {
+        if (event.key === 'Enter' || await pauseInTyping(event)) {
             const search = event.target.value;
             props.artistService.find(search).then((results)=>{
                 setArtists(results);
@@ -16,6 +16,16 @@ export default function SearchBar(props) {
                 console.error(error);
             });
         }
+    }
+
+    const pauseInTyping = async (event) => {
+        const text = event.target.value + event.key
+        await sleep(250);
+        return event.target.value === text;
+    }
+
+    const sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     const goToArtistPage = (artist) => {
