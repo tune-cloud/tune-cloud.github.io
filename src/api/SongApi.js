@@ -12,12 +12,7 @@ export default class SongApi {
             songs(artistId: ${artistId}, top: ${top}, filter: {
                 artists: [${artistId}]
             }) {
-                id
                 title
-                artist {
-                    id
-                    name
-                }
             }
         }`;
         return this.client.query({query: query});

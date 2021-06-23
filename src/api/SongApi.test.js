@@ -8,12 +8,7 @@ test('get songs for artist', ()=>{
     });
     const expectedResults = {data: {
         songs: [{
-            id: 'id',
             title: 'title',
-            artist: {
-                id: 'id',
-                name: 'name'
-            }
         }]
     }};
     client.query = jest.fn(()=> expectedResults);
