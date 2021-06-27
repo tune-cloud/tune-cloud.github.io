@@ -46,7 +46,7 @@ export default function ArtistPage(props) {
             console.error(error);
             history.push('/error');
         });
-    }, [props.location.search, props.songService]);
+    }, [props.location.search, props.songService, history]);
 
     useEffect(()=>{
         window.addEventListener('resize', ()=>{
