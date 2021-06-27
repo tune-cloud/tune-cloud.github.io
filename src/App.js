@@ -9,6 +9,7 @@ import ArtistPage from "./components/artist/ArtistPage";
 import SongService from "./services/SongService";
 import SongApi from "./api/SongApi";
 import SearchPage from "./components/search/SearchPage";
+import ErrorPage from "./components/error/ErrorPage";
 
 
 
@@ -32,6 +33,7 @@ function App() {
             <Route exact path='/' component={()=><HomePage artistService={artistService} />} />
             <Route path='/search' component={()=><SearchPage artistService={artistService} />} />
             <Route path='/artist' component={(props)=><ArtistPage songService={songService} {...props} />} />
+            <Route path='/error' component={ErrorPage} />
         </HashRouter>
   );
 }
