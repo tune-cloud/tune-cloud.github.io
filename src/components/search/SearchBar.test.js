@@ -63,7 +63,11 @@ test('error searching for artist', async ()=>{
     artistService.find = jest.fn(()=>Promise.reject('bad'));
     const spy = jest.spyOn(console, 'error');
 
-    render(<SearchBar artistService={artistService} />);
+    render(
+        <Router history={history}>
+            <SearchBar artistService={artistService} />
+        </Router>
+    );
     const searchBar = screen.getByPlaceholderText('Search for an artist');
     act(() => {
         fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
@@ -71,6 +75,8 @@ test('error searching for artist', async ()=>{
     await waitFor(()=>{
         expect(spy).toHaveBeenCalled();
     });
+
+    expect(history.location.pathname).toBe('/error');
 });
 
 const mockArtistService= () =>{

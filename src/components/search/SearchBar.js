@@ -14,6 +14,7 @@ export default function SearchBar(props) {
                 setArtists(results);
             }).catch((error)=>{
                 console.error(error);
+                history.push('/error');
             });
         }
     }
