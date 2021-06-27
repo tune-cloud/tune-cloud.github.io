@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import ReactWordcloud from 'react-wordcloud';
 import ScaleLoader from 'react-spinners/ScaleLoader';
+import {useHistory} from 'react-router-dom';
 
 export default function ArtistPage(props) {
 
@@ -21,6 +22,7 @@ export default function ArtistPage(props) {
     };
     const [height, setHeight] = useState(window.innerHeight - HEIGHT_OFFSET);
     const [width] = useState('100%');
+    const history = useHistory();
 
     const calculateWordValue = ((word, popularity)=>{
         if (word.length > MAX_SONG_TITLE_LENGTH) {
@@ -42,6 +44,7 @@ export default function ArtistPage(props) {
             setLoading(false);
         }).catch((error) => {
             console.error(error);
+            history.push('/error');
         });
     }, [props.location.search, props.songService]);
 
