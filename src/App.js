@@ -2,7 +2,8 @@ import {HashRouter, Route} from 'react-router-dom';
 import './App.css';
 import HomePage from "./components/home/HomePage";
 import ArtistApi from "./api/ArtistApi";
-import {ApolloClient, HttpLink, InMemoryCache} from "@apollo/client";
+import {ApolloClient, HttpLink, InMemoryCache, from} from "@apollo/client";
+import {RetryLink} from "@apollo/client/link/retry";
 import ArtistService from "./services/ArtistService";
 import ArtistPage from "./components/artist/ArtistPage";
 import SongService from "./services/SongService";
@@ -13,7 +14,10 @@ import SearchPage from "./components/search/SearchPage";
 
 function App() {
     const client = new ApolloClient({
-        link: new HttpLink({uri: 'https://nbl977s1aj.execute-api.us-east-1.amazonaws.com/dev/graphql'}),
+        link: from([
+            new RetryLink(),
+            new HttpLink({uri: 'https://nbl977s1aj.execute-api.us-east-1.amazonaws.com/dev/graphql'}),
+        ]),
         cache: new InMemoryCache(),
     });
 
