@@ -41,18 +41,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          build: npm run build
-          start: npm start
-
-      - name: Cypress run mobile
-        uses: cypress-io/github-action@v2
-        with:
-          build: npm run build
-          start: npm start
-          config: viewportWidth=414,viewportHeight=896
+      - name: End to End Tests
+        run: |
+          npm ci
+          npm start &
+          sleep 30
+          npm run test:e2e
+          npm run test:e2e-mobile
 
   scan:
     runs-on: ubuntu-latest
