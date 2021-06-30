@@ -9,6 +9,6 @@ describe('Word Cloud Page', ()=>{
 
     it("has word cloud of artist's songs", ()=>{
        cy.contains("Holding Down the Laughter");
-        cy.contains("It Never Stops");
+       cy.contains("It Never Stops");
     });
 })

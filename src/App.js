@@ -17,7 +17,7 @@ function App() {
     const client = new ApolloClient({
         link: from([
             new RetryLink(),
-            new HttpLink({uri: 'https://nbl977s1aj.execute-api.us-east-1.amazonaws.com/dev/graphql'}),
+            new HttpLink({uri: 'https://064dd0z3t3.execute-api.us-east-1.amazonaws.com/dev/graphql'}),
         ]),
         cache: new InMemoryCache(),
     });
