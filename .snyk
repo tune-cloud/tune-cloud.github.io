@@ -5,23 +5,23 @@ ignore:
   SNYK-JS-BROWSERSLIST-1090194:
     - react-scripts > react-dev-utils > browserslist:
         reason: None given
-        expires: '2021-07-02T13:20:46.672Z'
+        expires: '2021-08-01T16:17:11.374Z'
   SNYK-JS-CSSWHAT-1298035:
     - react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > css-what:
         reason: None given
-        expires: '2021-07-02T13:20:46.672Z'
+        expires: '2021-08-01T16:17:11.374Z'
   SNYK-JS-EJS-1049328:
     - react-scripts > workbox-webpack-plugin > workbox-build > @surma/rollup-plugin-off-main-thread > ejs:
         reason: None given
-        expires: '2021-07-02T13:20:46.672Z'
+        expires: '2021-08-01T16:17:11.375Z'
   SNYK-JS-GLOBPARENT-1016905:
     - react-scripts > webpack > watchpack > watchpack-chokidar2 > chokidar > glob-parent:
         reason: None given
-        expires: '2021-07-02T13:20:46.672Z'
+        expires: '2021-08-01T16:17:11.375Z'
   SNYK-JS-LODASHTEMPLATE-1088054:
     - react-scripts > workbox-webpack-plugin > workbox-build > lodash.template:
         reason: None given
-        expires: '2021-07-02T13:20:46.672Z'
+        expires: '2021-08-01T16:17:11.375Z'
   SNYK-JS-NORMALIZEURL-1296539:
     - react-scripts > mini-css-extract-plugin > normalize-url:
         reason: None given
