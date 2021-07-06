@@ -501,4 +501,17 @@ ignore:
     - '@apollo/client':
         reason: None given
         expires: '2021-07-19T12:59:21.183Z'
+  SNYK-JS-D3COLOR-1076592:
+    - react-wordcloud > d3-scale > d3-interpolate > d3-color:
+        reason: None given
+        expires: '2021-08-05T22:13:21.518Z'
+    - react-wordcloud > d3-scale-chromatic > d3-color:
+        reason: None given
+        expires: '2021-08-05T22:13:21.518Z'
+    - react-wordcloud > d3-transition > d3-color:
+        reason: None given
+        expires: '2021-08-05T22:13:21.518Z'
+    - react-wordcloud > d3-scale-chromatic > d3-interpolate > d3-color:
+        reason: None given
+        expires: '2021-08-05T22:13:21.518Z'
 patch: {}
