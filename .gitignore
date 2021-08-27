@@ -111,3 +111,6 @@ dist
 #cypress
 cypress/videos
 cypress/screenshots
+
+#Mac
+.DS_Store
