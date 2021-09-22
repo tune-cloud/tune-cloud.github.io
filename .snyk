@@ -538,12 +538,21 @@ ignore:
     - '@testing-library/react > @testing-library/dom > pretty-format > ansi-regex':
         reason: None given
         expires: '2021-10-15T13:37:34.837Z'
+      '@testing-library/dom > pretty-format > ansi-regex':
+        reason: None given
+        expires: '2021-10-22T14:36:02.176Z'
     - react-scripts > eslint > strip-ansi > ansi-regex:
         reason: None given
         expires: '2021-10-15T13:37:34.837Z'
+      cli-table3 > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-22T14:36:02.176Z'
     - '@testing-library/jest-dom > @types/testing-library__jest-dom > @types/jest > jest-diff > pretty-format > ansi-regex':
         reason: None given
         expires: '2021-10-15T13:37:34.837Z'
+      cli-truncate > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-22T14:36:02.176Z'
     - react-scripts > jest > @jest/core > @jest/console > jest-message-util > pretty-format > ansi-regex:
         reason: None given
         expires: '2021-10-15T13:37:34.837Z'
@@ -560,4 +569,8 @@ ignore:
     - react-scripts > babel-jest > @jest/transform > jest-haste-map > sane > anymatch > micromatch > braces > snapdragon > base > cache-base > union-value > set-value:
         reason: None given
         expires: '2021-10-15T13:37:34.837Z'
+  SNYK-JS-NTHCHECK-1586032:
+    - react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > nth-check:
+        reason: None given
+        expires: '2021-10-22T14:36:02.176Z'
 patch: {}
