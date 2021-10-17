@@ -46,8 +46,8 @@ jobs:
           npm ci
           npm start &
           sleep 30
-          npm run test:e2e
-          npm run test:e2e-mobile
+          npm run cy:run
+          npm run cy:run-mobile
 
   scan:
     runs-on: ubuntu-latest
@@ -124,7 +124,7 @@ jobs:
       - name: Run End to End Tests on Production
         run: |
           sleep 300
-          npm run test:e2e
-          npm run test:e2e-mobile
+          npm run cy:run
+          npm run cy:run-mobile
         env:
           CYPRESS_BASE_URL: https://tune-cloud.github.io

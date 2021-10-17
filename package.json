@@ -27,9 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:e2e": "cypress run",
-    "test:e2e-mobile": "cypress run --config viewportWidth=414,viewportHeight=896",
-    "cypress:open": "cypress open"
+    "cy:run": "cypress run",
+    "cy:run-mobile": "cypress run --config viewportWidth=414,viewportHeight=896",
+    "cy:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [

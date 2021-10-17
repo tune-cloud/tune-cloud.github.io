@@ -87,4 +87,4 @@ jobs:
           npm ci
           npm start &
           sleep 30
-          npm run test:e2e
+          npm run cy:run
