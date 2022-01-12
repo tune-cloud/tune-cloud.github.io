@@ -12,13 +12,19 @@ ignore:
         expires: '2021-08-01T16:17:11.374Z'
       react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > css-what:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:43:00.307Z'
     - react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > css-what:
         reason: None given
         expires: '2021-08-31T03:14:24.951Z'
     - react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > css-what:
         reason: None given
         expires: '2021-10-08T13:43:07.595Z'
+    - react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > css-what:
+        reason: None given
+        expires: '2021-11-16T13:54:10.201Z'
+    - react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > css-what:
+        reason: None given
+        expires: '2022-02-11T15:33:44.187Z'
   SNYK-JS-EJS-1049328:
     - react-scripts > workbox-webpack-plugin > workbox-build > @surma/rollup-plugin-off-main-thread > ejs:
         reason: None given
@@ -26,11 +32,11 @@ ignore:
   SNYK-JS-GLOBPARENT-1016905:
     - react-scripts > webpack > watchpack > watchpack-chokidar2 > chokidar > glob-parent:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:33:44.187Z'
   SNYK-JS-LODASHTEMPLATE-1088054:
     - react-scripts > workbox-webpack-plugin > workbox-build > lodash.template:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:33:44.187Z'
   SNYK-JS-NORMALIZEURL-1296539:
     - react-scripts > mini-css-extract-plugin > normalize-url:
         reason: None given
@@ -513,26 +519,26 @@ ignore:
   SNYK-JS-D3COLOR-1076592:
     - react-wordcloud > d3-scale > d3-interpolate > d3-color:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:43:00.307Z'
     - react-wordcloud > d3-scale-chromatic > d3-color:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:43:00.307Z'
     - react-wordcloud > d3-transition > d3-color:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:43:00.307Z'
     - react-wordcloud > d3-scale-chromatic > d3-interpolate > d3-color:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:43:00.307Z'
     - react-wordcloud > d3-transition > d3-interpolate > d3-color:
         reason: None given
         expires: '2021-08-31T03:05:48.055Z'
   SNYK-JS-ANSIHTML-1296849:
     - react-scripts > @pmmmwh/react-refresh-webpack-plugin > ansi-html:
         reason: None given
-        expires: '2021-11-16T13:54:10.200Z'
+        expires: '2022-02-11T15:33:44.187Z'
     - react-scripts > webpack-dev-server > ansi-html:
         reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
+        expires: '2022-02-11T15:33:44.187Z'
   SNYK-JS-IMMER-1540542:
     - react-scripts > react-dev-utils > immer:
         reason: None given
@@ -541,9 +547,6 @@ ignore:
     - '@testing-library/react > @testing-library/dom > pretty-format > ansi-regex':
         reason: None given
         expires: '2021-10-15T13:37:34.837Z'
-      react-scripts > webpack-dev-server > yargs > cliui > string-width > strip-ansi > ansi-regex:
-        reason: None given
-        expires: '2021-11-16T13:54:10.201Z'
     - react-scripts > eslint > strip-ansi > ansi-regex:
         reason: None given
         expires: '2021-10-15T13:37:34.837Z'
@@ -568,6 +571,12 @@ ignore:
     - cli-truncate > string-width > strip-ansi > ansi-regex:
         reason: None given
         expires: '2021-10-22T14:36:02.176Z'
+    - react-scripts > webpack-dev-server > yargs > cliui > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-11-16T13:54:10.201Z'
+    - react-scripts > webpack-dev-server > yargs > cliui > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2022-02-11T15:33:44.187Z'
   SNYK-JS-SETVALUE-1540541:
     - react-scripts > babel-jest > @jest/transform > jest-haste-map > sane > anymatch > micromatch > braces > snapdragon > base > cache-base > set-value:
         reason: None given
@@ -578,7 +587,7 @@ ignore:
   SNYK-JS-NTHCHECK-1586032:
     - react-scripts > @svgr/webpack > @svgr/plugin-svgo > svgo > css-select > nth-check:
         reason: None given
-        expires: '2021-10-22T14:36:02.176Z'
+        expires: '2022-02-11T15:43:00.307Z'
   SNYK-JS-PROMPTS-1729737:
     - react-scripts > prompts:
         reason: None given
