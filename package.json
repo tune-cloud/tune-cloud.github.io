@@ -21,7 +21,7 @@
     "web-vitals": "2.1.0"
   },
   "devDependencies": {
-    "cypress": "8.6.0"
+    "cypress": "9.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
