@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import ReactWordcloud from 'react-wordcloud';
 import ScaleLoader from 'react-spinners/ScaleLoader';
-import {useHistory} from 'react-router-dom';
+import {useNavigate, useSearchParams} from 'react-router-dom';
 
 export default function ArtistPage(props) {
 
@@ -22,7 +22,8 @@ export default function ArtistPage(props) {
     };
     const [height, setHeight] = useState(window.innerHeight - HEIGHT_OFFSET);
     const [width] = useState('100%');
-    const history = useHistory();
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
 
     const calculateWordValue = ((word, popularity)=>{
         if (word.length > MAX_SONG_TITLE_LENGTH) {
@@ -33,9 +34,8 @@ export default function ArtistPage(props) {
     });
 
     useEffect( ()=>{
-        const params = new URLSearchParams(props.location.search);
-        const artistId = params.get('artistId');
-        setArtist(params.get('artist'));
+        const artistId = searchParams.get('artistId');
+        setArtist(searchParams.get('artist'));
         props.songService.getSongs(artistId, NUMBER_OF_SONGS).then((results)=>{
             const words = results.map((song, index) => {
                 return {text: song.title, value: calculateWordValue(song.title, index)}
@@ -44,9 +44,9 @@ export default function ArtistPage(props) {
             setLoading(false);
         }).catch((error) => {
             console.error(error);
-            history.push('/error');
+            navigate('/error');
         });
-    }, [props.location.search, props.songService, history]);
+    }, [searchParams, props.songService, navigate]);
 
     useEffect(()=>{
         window.addEventListener('resize', ()=>{

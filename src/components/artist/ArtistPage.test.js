@@ -1,16 +1,20 @@
 import SongService from '../../services/SongService';
 import ArtistPage from './ArtistPage';
 import {act, render, screen, waitFor} from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import {Router} from "react-router-dom";
 
 let songService;
-let location;
+const mockedUsedNavigate = jest.fn();
+const mockUseSearchParams = {
+    get: ()=> jest.fn()
+}
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockedUsedNavigate,
+    useSearchParams: () => [mockUseSearchParams]
+}));
+
 beforeAll(()=>{
     songService = new SongService();
-    location = {
-        'search': '?artistId=id&artist=artist'
-    };
     jest.mock('react-wordcloud');
 });
 
@@ -24,7 +28,7 @@ test('renders word cloud with artist songs', async ()=>{
    });
 
 
-   render(<ArtistPage songService={songService} location={location}/>);
+   render(<ArtistPage songService={songService} />);
    const wordCloud = screen.getByTestId('word-cloud');
    expect(wordCloud).toBeInTheDocument();
 });
@@ -33,18 +37,13 @@ test('logs when error and redirects to error page', async ()=>{
     songService.getSongs = jest.fn(()=>Promise.reject('bad'));
     const spy = jest.spyOn(console, 'error');
 
-    const history = createMemoryHistory();
-    render(
-        <Router history={history}>
-            <ArtistPage songService={songService} location={location}/>
-        </Router>
-    );
+    render(<ArtistPage songService={songService}/>);
 
     await waitFor(()=>{
         expect(spy).toHaveBeenCalled();
     });
 
-    expect(history.location.pathname).toBe('/error');
+    expect(mockedUsedNavigate).toBeCalledWith('/error');
 });
 
 test('resize window resizes word cloud', async () => {
@@ -55,7 +54,7 @@ test('resize window resizes word cloud', async () => {
             title: 'song 2'
         }]);
     });
-    render(<ArtistPage songService={songService} location={location}/>);
+    render(<ArtistPage songService={songService} />);
     act(()=> {
         window.innerWidth = 400;
         window.innerHeight = 400;

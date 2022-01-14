@@ -1,4 +1,4 @@
-import {HashRouter, Route} from 'react-router-dom';
+import {HashRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import HomePage from "./components/home/HomePage";
 import ArtistApi from "./api/ArtistApi";
@@ -29,11 +29,13 @@ function App() {
     const songService = new SongService();
 
     return (
-        <HashRouter basename='/'>
-            <Route exact path='/' component={()=><HomePage artistService={artistService} />} />
-            <Route path='/search' component={()=><SearchPage artistService={artistService} />} />
-            <Route path='/artist' component={(props)=><ArtistPage songService={songService} {...props} />} />
-            <Route path='/error' component={ErrorPage} />
+        <HashRouter>
+            <Routes>
+                <Route exact path='/' element={<HomePage artistService={artistService} />} />
+                <Route path='/search' element={<SearchPage artistService={artistService} />} />
+                <Route path='/artist' element={<ArtistPage songService={songService} />} />
+                <Route path='/error' element={<ErrorPage />} />
+            </Routes>
         </HashRouter>
   );
 }

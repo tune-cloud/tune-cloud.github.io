@@ -1,11 +1,11 @@
 import { Search } from 'react-bootstrap-icons';
 import {Fragment, useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from "react-router-dom";
 
 export default function SearchBar(props) {
 
     const [artists, setArtists] = useState([]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const searchBarKeyPress = async (event) => {
         if (event.key === 'Enter' || await pauseInTyping(event)) {
@@ -14,7 +14,7 @@ export default function SearchBar(props) {
                 setArtists(results);
             }).catch((error)=>{
                 console.error(error);
-                history.push('/error');
+                navigate('/error');
             });
         }
     }
@@ -30,7 +30,7 @@ export default function SearchBar(props) {
     }
 
     const goToArtistPage = (artist) => {
-        history.push(`/artist?artistId=${artist.id}&artist=${artist.name}`);
+        navigate(`/artist?artistId=${artist.id}&artist=${artist.name}`);
         window.location.reload();
     }
 

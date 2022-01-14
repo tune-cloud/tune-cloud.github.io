@@ -1,15 +1,16 @@
 import {act, fireEvent, render, screen, waitFor} from '@testing-library/react';
 import ArtistService from '../../services/ArtistService';
-import {Router} from "react-router-dom";
-import { createMemoryHistory } from 'history';
 import SearchBar from './SearchBar';
 
 jest.setTimeout(10000);
-let history;
 
-beforeEach(()=>{
-    history = createMemoryHistory();
-})
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockedUsedNavigate,
+}));
+
 
 test('search for artist with mouse click', async ()=>{
 
@@ -26,35 +27,26 @@ test('search for artist with mouse click', async ()=>{
 });
 
 test('navigate to artist page using mouse', async ()=>{
-    render(
-        <Router history={history}>
-            <SearchBar artistService={mockArtistService()} />
-        </Router>
-    );
+    render(<SearchBar artistService={mockArtistService()} />);
 
     await searchAndFireEventOnResult((result)=>{
         fireEvent.click(result);
     });
 
     await waitFor(()=>{
-        expect(history.location.pathname).toBe('/artist');
-        expect(history.location.search).toBe('?artistId=id&artist=name');
+        expect(mockedUsedNavigate).toBeCalledWith('/artist?artistId=id&artist=name');
     });
 });
 
 
 test('only Enter key navigates to artist page', async ()=>{
-    render(
-        <Router history={history}>
-            <SearchBar artistService={mockArtistService()} />
-        </Router>
-    );
+    render(<SearchBar artistService={mockArtistService()} />);
     await searchAndFireEventOnResult((result) => {
         fireEvent.keyDown(result, {key: 'a', code: 'a'});
     })
 
     await waitFor(()=>{
-        expect(history.location.pathname).toBe('/');
+        expect(mockedUsedNavigate).not.toBeCalled();
     });
 });
 
@@ -63,11 +55,7 @@ test('error searching for artist', async ()=>{
     artistService.find = jest.fn(()=>Promise.reject('bad'));
     const spy = jest.spyOn(console, 'error');
 
-    render(
-        <Router history={history}>
-            <SearchBar artistService={artistService} />
-        </Router>
-    );
+    render(<SearchBar artistService={artistService} />);
     const searchBar = screen.getByPlaceholderText('Search for an artist');
     act(() => {
         fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter'});
@@ -76,7 +64,7 @@ test('error searching for artist', async ()=>{
         expect(spy).toHaveBeenCalled();
     });
 
-    expect(history.location.pathname).toBe('/error');
+    expect(mockedUsedNavigate).toBeCalledWith('/error');
 });
 
 const mockArtistService= () =>{
