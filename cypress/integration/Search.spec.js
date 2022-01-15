@@ -24,6 +24,7 @@ describe('Home Page', ()=>{
         });
 
         it('does not navigate to a new page when searching', () => {
+            cy.get('input').should('exist');
             cy.get('input').type('Bad Books');
             cy.wait(5000);
             cy.hash().should('eq', '')
@@ -54,6 +55,7 @@ describe('Home Page', ()=>{
         });
 
         it('navigates to a new page when searching', () => {
+            cy.get('input').should('exist');
             cy.get('input').type('Bad Books');
             cy.wait(5000);
             cy.hash().should('eq', '#/search')
