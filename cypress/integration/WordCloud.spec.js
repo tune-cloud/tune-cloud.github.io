@@ -1,4 +1,4 @@
-['macbook-15', 'iphone-8'].forEach((size) => {
+['macbook-11', 'iphone-8'].forEach((size) => {
     describe(`Word Cloud Page on ${size}`, ()=>{
         beforeEach(() => {
             cy.viewport(size);

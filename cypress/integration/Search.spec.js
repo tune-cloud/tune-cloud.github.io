@@ -2,7 +2,7 @@
 describe('Home Page', ()=>{
     context('Desktop view', ()=> {
         beforeEach(()=>{
-            cy.viewport('macbook-15');
+            cy.viewport('macbook-11');
             cy.visit('/');
         });
 
