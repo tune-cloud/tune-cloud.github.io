@@ -26,7 +26,7 @@ describe('Home Page', ()=>{
         it('does not navigate to a new page when searching', () => {
             cy.visit('/', { timeout: 30000 });
             cy.get('input').type('Bad Books');
-            cy.wait(5000);
+            cy.wait(30000);
             cy.hash().should('eq', '')
         })
     });
@@ -57,7 +57,7 @@ describe('Home Page', ()=>{
         it('navigates to a new page when searching', () => {
             cy.visit('/', { timeout: 30000 });
             cy.get('input').type('Bad Books');
-            cy.wait(5000);
+            cy.wait(30000);
             cy.hash().should('eq', '#/search')
         })
     });
