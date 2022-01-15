@@ -17,17 +17,13 @@ describe('Home Page', ()=>{
         it('can search', ()=>{
             cy.get('input').type('Bad Books');
             cy.wait(5000);
+            // does not navigate to mobile search page
+            cy.hash().should('eq', '');
             cy.get('input').type('{enter}');
             cy.wait(5000);
             cy.get('li').first().click();
             cy.hash().should('eq', '#/artist?artistId=97829&artist=Bad%20Books');
         });
-
-        it('does not navigate to a new page when searching', () => {
-            cy.get('input').type('Bad Books');
-            cy.wait(30000);
-            cy.hash().should('eq', '')
-        })
     });
 
     context('Mobile view', ()=> {
@@ -47,16 +43,12 @@ describe('Home Page', ()=>{
         it('can search', ()=>{
             cy.get('input').type('Bad Books');
             cy.wait(5000);
+            // navigates to mobile search page
+            cy.hash().should('eq', '#/search');
             cy.get('input').type('{enter}');
             cy.wait(5000);
             cy.get('li').first().click();
             cy.hash().should('eq', '#/artist?artistId=97829&artist=Bad%20Books');
         });
-
-        it('navigates to a new page when searching', () => {
-            cy.get('input').type('Bad Books');
-            cy.wait(30000);
-            cy.hash().should('eq', '#/search')
-        })
     });
 });
