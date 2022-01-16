@@ -41,12 +41,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: End to End Tests
-        run: |
-          npm ci
-          npm start &
-          sleep 30
-          npm run cy:run
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
 
   scan:
     runs-on: ubuntu-latest
@@ -119,10 +120,10 @@ jobs:
         with:
           branch: main
           folder: build
+      - name: wait for deployment to complate
+        run: sleep 300
 
       - name: Run End to End Tests on Production
-        run: |
-          sleep 300
-          npm run cy:run
+        uses: cypress-io/github-action@v2
         env:
           CYPRESS_BASE_URL: https://tune-cloud.github.io
